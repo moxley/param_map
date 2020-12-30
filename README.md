@@ -2,16 +2,19 @@
 
 Use atom keys to access values in string-keyed maps.
 
-Unlike similar packages, `ParamMap`, does not blindly convert strings to atoms.
-It converts only the keys you specify.
-
-The API is compatible with a subset of the `Map` module, which we are already
+The `ParamMap` API is compatible with a subset of the `Map` module, which we are already
 familiar with.
 
-If you use Ecto, maybe you know that as hard as we try, we can't help but
-read values from untrusted, string-keyed maps before they get
-normalized into an Ecto.Changeset.
-Changesets can be too heavy-handed for some situations.
+Unlike similar packages, `ParamMap`, does not blindly convert strings to atoms.
+It converts only the keys you specify. Also, it does not force you to define a schema,
+or generate a struct def.
+
+If you are a user of Ecto.Changeset, you've probably written a function that takes untrusted,
+string-keyed params and acts on them before passing them to a changeset. If the function uses
+string keys to access map values, then that function becomes coupled to the outer (web) layer of
+the application where string-keyed maps are unavoidable. What if you want that function
+to be callable from inner layers of the application that perfer atom keyed maps?
+`ParamMap` gives you that flexibility.
 
 ## Usage
 
@@ -69,3 +72,8 @@ def deps do
   ]
 end
 ```
+
+## Links
+
+- API docs: https://hexdocs.pm/param_map/ParamMap.html
+- hex.pm: https://hex.pm/packages/param_map
