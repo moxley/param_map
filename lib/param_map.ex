@@ -73,8 +73,9 @@ defmodule ParamMap do
   def take(_params, [], map), do: map
 
   def take(params, [key | keys], map) do
-    with {:ok, value} = fetch(params, key) do
-      Map.put(take(params, keys, map), key, value)
+    case fetch(params, key) do
+      {:ok, value} -> Map.put(take(params, keys, map), key, value)
+      :error -> take(params, keys, map)
     end
   end
 end
