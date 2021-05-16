@@ -4,7 +4,7 @@ defmodule ParamMap.MixProject do
   def project do
     [
       app: :param_map,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.7",
       start_permanent: false,
       deps: deps(),
